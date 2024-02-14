@@ -69,7 +69,7 @@ cards.next.onclick = async function () {
    
     if(active + 1 === cards.items.length){
         await loadRandomBeer();
-        loadShow(cards.items, ++active)
+        setTimeout(loadShow(cards.items, ++active),300)
     } else {
         loadShow(cards.items, ++active);
     }    
