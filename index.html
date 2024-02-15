@@ -2,26 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="img/beer.png">
+    <link rel="icon" href="img/beer.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Punk API v2</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-        <h1>Punk API</h1>
-        <h2>Version 2</h2>
+      <h1>Punk API</h1>
+      <h2>Version 2</h2>
     </header>
-    <div class="slider">
-     
-     
+    <form action="" class="search-bar">
+      <input
+        type="search"
+        name="search"
+        pattern=".*\S.*"
+        required
+        placeholder="Search for beer.."
+      />
+      <button class="search-btn" type="submit">
+        <span>Search</span>
+      </button>
+    </form>
+    <div class="random-beers">
+      <div class="slider">
+        <div class="item read-more">
+          <div class="title-img">
+            <div class="text">
+                <h1>Hello My Name Is Niam Hello My Name Is Niamhh</h1>
+                <div class="tagline">Elderflower Infused Double IPA.</div>
+            </div>
+            <img src="img/beer.png" />
+          </div>
+          <div class="description"><strong>Description: </strong> Brewed exclusively for
+            the Irish market, this Hello My Name brew features a twist of flavour
+            inspired by Ireland.</div> 
+            <div class="tips"><strong>Tips: </strong>Save yourself a lot of hassle and buy the Elderflower as a concentrate or cordial. Collecting elderberries ranks low on the FPES (fruit picking enjoyment scale), can't imagine the flower picking is much better.</div>
+            <div class="info"><strong>Alcohol by volume:</strong>  8.2%</div>
+            <div class="info"><strong>Volume:</strong> 20 litres</div>
+            <div class="info"><strong>Hops:</strong>Simcoe, Chinook, Elderflower Concentrate, Citra, Centennial</div>
+            <div class="info"><strong>Food pairing:</strong>Grilled sea bass fillet, Sushi maki</div>
+            <div class="info"><strong>Ingridients: </strong> Pale Ale, Caramalt</div>
+        </div>
+      </div>
+      <button id="next">></button>
+      <button id="prev" class="hider"><</button>
     </div>
-    <button id="next">></button>
-    <button id="prev" class="hider"><</button>
-
     <script src="app.js" type="module"></script>
   </body>
 </html>
