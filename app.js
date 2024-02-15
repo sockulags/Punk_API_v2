@@ -3,13 +3,28 @@ import { loadShow } from "./functions.js";
 
 const randomBeerUrl = "https://api.punkapi.com/v2/beers/random";
 
-async function loadRandomBeer() {
-  let randomBeer;
-  randomBeer = await fetchRandomBeer();
-  cards.slider.insertAdjacentElement("beforeend", card(randomBeer));
-  cards.items = document.querySelectorAll(".slider .item");
-}
+let active = 0;
 
+document.addEventListener('DOMContentLoaded', function() {
+    loadRandomBeer(); 
+  });
+
+async function loadRandomBeer() {
+    cards.next.disabled = true;
+    cards.prev.disabled = true;
+  
+    try {
+      let randomBeer = await fetchRandomBeer();
+      cards.slider.insertAdjacentElement("beforeend", card(randomBeer));
+      cards.items = document.querySelectorAll(".slider .item");
+      loadShow(cards.items, active)
+    } catch (error) {
+      console.error("Error fetching random beer:", error);
+    } finally {    
+      cards.next.disabled = false;
+      cards.prev.disabled = false;
+    }
+  }
 async function fetchRandomBeer() {
   try {
     const beerResponse = await fetch(randomBeerUrl);
@@ -44,42 +59,45 @@ const card = (beer) => {
   return div;
 };
 
-loadRandomBeer();
-// Card slider functionality
 
-/**
- * Represents the index of the currently active item.
- * @type {number}
- */
-let active = 0;
-
-loadShow(cards.items, active);
-
-/**
- * Handles the next button click event by incrementing the active item index
- * and updating the displayed show.
- */
-cards.next.onclick = async function () {
-  if (active === 0) {
-    cards.prev.classList.remove("hider");
-  }
-  active++;
-  if (active === cards.items.length) {
-    await loadRandomBeer();
-    setTimeout(loadShow(cards.items, active), 0);
-  } else {
+cards.next.addEventListener('click', async () => {
+    if (active === 0) {
+      cards.prev.classList.remove("hider");
+    }    
+    
+    if (active + 1 === cards.items.length) {
+      const startTime = new Date().getTime(); 
+      await loadRandomBeer();
+      await dynamicDelay(startTime);
+    }
+    ++active;
     loadShow(cards.items, active);
-  }
-};
+  
+    if (active > 0) {
+      cards.prev.classList.remove("hider");
+    }
+  });
+  
+  cards.prev.addEventListener('click', () => {
+      if (active > 0) {
+          active--;
+          loadShow(cards.items, active);
+      }
+      if (active === 0) {
+        cards.prev.disabled = true;
+      }
+  });
 
-/**
- * Handles the previous button click event by decrementing the active item index
- * and updating the displayed show.
- */
-cards.prev.onclick = function () {
-    let current = active;
-    active = active === 0 ? 0 : active -1;
-   if (active === 0) cards.prev.classList.add("hider");
-if(current !== active)
-  loadShow(cards.items, active);
-};
+  function dynamicDelay(startTime, minimumDuration = 350) {
+    const endTime = new Date().getTime();
+    const elapsedTime = endTime - startTime;
+    const remainingTime = minimumDuration - elapsedTime;
+  
+    return new Promise((resolve) => {
+      if (remainingTime > 0) {
+        setTimeout(resolve, remainingTime);
+      } else {
+        resolve(); 
+      }
+    });
+  }

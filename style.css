@@ -100,8 +100,6 @@ header h1{
 #next{
     left: unset;
     right: 50px;
+    z-index: 10;
 }
 
-.hider{
-  display: none;
-}
