@@ -3,7 +3,7 @@ body{
         linear-gradient(
             to top right, #e68282, #242424
         );
-    min-height: 100vh;
+    min-height: 100svh;
     margin:0;
     display: flex;
     justify-content: center;
@@ -22,7 +22,7 @@ body{
 header{
     position: absolute;
     left: 50%;
-    top: 10%;
+    top: 150px;
     transform: translate(-50%,-50%);
     text-align: center;
     color: #fff;
@@ -34,14 +34,14 @@ header h2{
 }
 header h1{
     margin: 0px;
-    font-size: 46px;
+    font-size: 40px;
 }
 
 /* CARDS */
 
 .slider{    
     position: absolute;
-    top: 200px;
+    top: 220px;
     width: 100vw;  
     height: 370px;
     overflow: hidden;  
@@ -245,29 +245,67 @@ header h1{
     border-width: 3px;
     transition: 0.5s;   
     text-align: left;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: flex-start; /* Center vertically */
+    display: flex;   
+    align-items: flex-start;
     width: 370px;
+    height: 450px;
+    overflow: auto;
+    overflow-x: hidden;
     gap: 3px;
     z-index: 9999; /* Set a high z-index */
     position: absolute;
     left: 50%;
-    top: 50%;    
-    height: fit-content;
+    top: 435px;   
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     background-image: linear-gradient(to top right, #ffdfdf, #d1d1d1);  
     animation: expand 0.3s linear forwards; /* Define the animation */
+    --scrollbar-gradient: linear-gradient(to bottom, #5c3434, #242424);
 }
 
 @keyframes expand {
     from {
-        transform: scale(0.3) translate(-50%, -50%);
+        transform: scale(0.1) translate(-100%, -100%);
+        top: 290px;
+        left: 120px;
     }
     to {
         transform: scale(1) translate(-50%, -50%);
     }
 }
+
+@keyframes contract {
+    from {
+        transform: scale(1) translate(-50%, -50%);
+    }
+    to {
+        transform: scale(0.1) translate(-50%, -50%);
+        top: 260px;
+        left: 40px;
+    }
+}
+
+
+.read-more::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+/* Track */
+.read-more::-webkit-scrollbar-track {
+    background-color: transparent; /* Transparent background for the scrollbar track */
+}
+
+/* Handle */
+.read-more::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-gradient); /* Use CSS variable for gradient */
+    border-radius: 10px; /* Border radius for the scrollbar handle */
+}
+
+/* Hide scrollbar */
+.read-more::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
 
 
 .hider{
@@ -318,21 +356,17 @@ header h1{
     font-size:20px;
     font-weight: 600;
     transition: 0.2s;
-    color:transparent;
+    color:black;
     cursor: pointer;
     padding: 5px 10px;
 
 }
 .read-more:hover .exit-btn {
     color:black;    
-    border-left: 3px groove #242424;
-    border-bottom: 3px groove #242424;
-    border-radius: 0 10px 0 3px;
 }
 
 .exit-btn:hover{
-    background-color: white;
-
+  font-size: 24px;
 }
 
 /* Active state */

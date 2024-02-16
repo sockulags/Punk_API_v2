@@ -19,10 +19,18 @@ document.addEventListener('DOMContentLoaded', loadRandomBeer);
 
 document.body.addEventListener("click", (e) =>{
     if(e.target.classList.contains("exit-btn")){
-        document.querySelector(".read-more").innerHTML = "";
-        document.querySelector(".read-more").classList.add("hider");
+        const readMore = document.querySelector(".read-more");
+        readMore.style.animation = "contract 0.3s linear forwards"; // Apply the contract animation
+        document.getElementById("next").style.display = "";
+        document.getElementById("prev").style.display= "";
+        setTimeout(() => {
+            readMore.innerHTML = ""; // Clear content after animation completes
+            readMore.classList.add("hider"); // Optionally hide the element
+            readMore.style.animation = "expand 0.3s linear forwards";
+           
+        }, 300); // Adjust the timeout to match the animation duration
     }
-})
+});
 /**
  * Fetches and displays a random beer.
  * Disables navigation buttons during the fetch operation and re-enables them afterwards.
@@ -88,7 +96,9 @@ const createCardElement = (beer) => {
 button.classList.add("read-more-btn");
 button.addEventListener("click", () => {
     document.querySelector(".read-more").innerHTML = createReadMoreCard(beer);
-    document.querySelector(".read-more").classList.remove("hider");   
+    document.querySelector(".read-more").classList.remove("hider");  
+    document.getElementById("next").style.display = "none";
+    document.getElementById("prev").style.display= "none"; 
 })
   button.textContent = "Read more";
   div.append(name, imgDiv, button);
@@ -150,6 +160,11 @@ cards.prev.addEventListener('click', () => {
       cards.prev.classList.add("hider");
     }
 });
+
+
+
+
+
 
 /**
  * Waits for a minimum duration, adjusting for the elapsed time since startTime.
