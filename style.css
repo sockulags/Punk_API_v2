@@ -12,6 +12,11 @@ body{
    
 }
 
+*{
+    box-sizing: border-box;
+   
+}
+
 /* HEADER */
 
 header{
@@ -34,40 +39,41 @@ header h1{
 
 /* CARDS */
 
-.slider{
+.slider{    
     position: absolute;
     top: 200px;
-    width: 100%;
+    width: 100vw;  
     height: 370px;
-    overflow: hidden;
+    overflow: hidden;  
+    
 }
 
-.item{
+.item {
     position: absolute;
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    align-items: center;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 10px;
     flex-direction: column;
     width: 200px;
-    height: 300px;    
+    height: 300px;
     background-color: #fff;
-    border-radius: 10px;    
+    border-radius: 10px;
     border-style: groove;
     border-color: #242424;
     border-width: 3px;
-    transition: 0.5s;
-    left: calc(50% - 120px);
-    top:0;
+    transition: 0.5s; 
+    left: calc(50% - 100px);     
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     background-image: linear-gradient(to top right, #ffdfdf, #d1d1d1);
     color: #fff;
 }
 
 .item h1{
-    font-size: 26px;
+    font-size: 20px;
     display: -webkit-box;
   -webkit-line-clamp: 2; /* Display two lines */
+  -webkit-box-orient: vertical;
   overflow: hidden;
   margin-top: 0;
 }
@@ -102,7 +108,7 @@ header h1{
 #next{
     left: unset;
     right: calc(50% - 200px);
-    z-index: 10;
+    z-index: 10;   
 }
 
 .random-beers{
@@ -112,7 +118,7 @@ header h1{
 /* SEARCH FORM */
 .search-bar {
     position: absolute;
-    top: 570px;
+    top: 670px;
 	display: flex;
 }
 
@@ -228,45 +234,74 @@ header h1{
     );
 }
 
-.search-bar{
-    display: none;
+
+.read-more {      
+    color: #000;  
+    padding: 15px; 
+    flex-direction: column;      
+    border-radius: 10px;    
+    border-style: groove;
+    border-color: #242424;
+    border-width: 3px;
+    transition: 0.5s;   
+    text-align: left;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start; /* Center vertically */
+    width: 370px;
+    gap: 3px;
+    z-index: 9999; /* Set a high z-index */
+    position: absolute;
+    left: 50%;
+    top: 50%;    
+    height: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    background-image: linear-gradient(to top right, #ffdfdf, #d1d1d1);  
+    animation: expand 0.3s linear forwards; /* Define the animation */
 }
 
-.read-more{
-    width: 370px;    
-    left: calc(50% - 205px);
-    background-color: #fff;
-    z-index: 15;
-    text-align: left;
+@keyframes expand {
+    from {
+        transform: scale(0.3) translate(-50%, -50%);
+    }
+    to {
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+
+.hider{
+    display: none;
 }
 
 .title-img{
     display: flex;
     justify-content: space-between;
-    align-content: center;
-    height: 20%;
+    align-items:flex-start;
+    margin-top: 0;
+    height: 80px;
     gap: 10px;
-    width: 100%;
-    margin-bottom: 0;
+    width: 95%;
+    margin-bottom: 0; 
 }
 
 .title-img h1{
     font-size: 20px;
-    line-height: 24px;
+    line-height: 20px;
     display: -webkit-box;
   -webkit-line-clamp: 2; /* Display two lines */
+  -webkit-box-orient: vertical;
   overflow: hidden;
   margin-bottom: 0;
+  margin-top: 8px;
 }
 
 .title-img img{
     position: relative;
-    top: -10px;
-    right: -10px;
-}
-
-.read-more .description{
-    margin-top: 15px;
+    height: 80%;
+    width: auto;
+    top: 0px;
+    right: 0px;
 }
 
 .read-more .tagline{
@@ -276,10 +311,29 @@ header h1{
     font-size: 14px;
 }
 
-.read-more .info{
-    display: flex;
+.exit-btn{
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    font-size:20px;
+    font-weight: 600;
+    transition: 0.2s;
+    color:transparent;
+    cursor: pointer;
+    padding: 5px 10px;
+
+}
+.read-more:hover .exit-btn {
+    color:black;    
+    border-left: 3px groove #242424;
+    border-bottom: 3px groove #242424;
+    border-radius: 0 10px 0 3px;
 }
 
+.exit-btn:hover{
+    background-color: white;
+
+}
 
 /* Active state */
 .search-bar input:focus + .search-btn,

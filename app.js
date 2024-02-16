@@ -16,6 +16,13 @@ let active = 0;
 // Load a random beer when the document content has been fully loaded.
 document.addEventListener('DOMContentLoaded', loadRandomBeer);
 
+
+document.body.addEventListener("click", (e) =>{
+    if(e.target.classList.contains("exit-btn")){
+        document.querySelector(".read-more").innerHTML = "";
+        document.querySelector(".read-more").classList.add("hider");
+    }
+})
 /**
  * Fetches and displays a random beer.
  * Disables navigation buttons during the fetch operation and re-enables them afterwards.
@@ -79,10 +86,37 @@ const createCardElement = (beer) => {
   const button = document.createElement("button");
 //   button.addEventListener();
 button.classList.add("read-more-btn");
+button.addEventListener("click", () => {
+    document.querySelector(".read-more").innerHTML = createReadMoreCard(beer);
+    document.querySelector(".read-more").classList.remove("hider");   
+})
   button.textContent = "Read more";
   div.append(name, imgDiv, button);
   return div;
 };
+
+const createReadMoreCard = (beer) => {
+    const maltIngredients = [...new Set(beer.ingredients.malt.map(m => m.name))].join(", ");
+    const hops = [...new Set(beer.ingredients.hops.map(m => m.name))].join(", ");
+
+    return `   
+    <div class="title-img">
+      <div class="text">
+          <h1>${beer.name}</h1>
+          <div class="tagline">${beer.tagline}</div>
+      </div>
+      <img src="${beer.image_url ?? "img/beer.png"}" />
+      <span class="exit-btn">x</span>
+    </div>
+    <div class="description"><strong>Description: </strong> ${beer.description}</div> 
+      <div class="tips"><strong>Tips: </strong>${beer.brewers_tips}</div>
+      <div class="info"><strong>Alcohol by volume: </strong>${beer.abv}%</div>
+      <div class="info"><strong>Volume: </strong> ${beer.volume.value} ${beer.volume.unit}</div>
+      <div class="info"><strong>Hops: </strong>${hops}</div>
+      <div class="info"><strong>Food pairing: </strong>${beer.food_pairing.join(", ")}</div>
+     <div class="info"><strong>Ingridients: </strong>${maltIngredients}</div>
+    `
+}
 
 
 
