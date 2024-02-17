@@ -162,8 +162,36 @@ cards.prev.addEventListener('click', () => {
 });
 
 
+// Function to make API request to search for beers by name
+function searchBeersByName(searchQuery) {  
+    if (searchQuery.trim() !== '') {
+        // Construct the API URL with the search query
+        const apiUrl = `https://api.punkapi.com/v2/beers?page=1&per_page=10&beer_name=${encodeURIComponent(searchQuery)}`;
 
+        // Make the API request
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(beers => {
+                   console.log('Search results:', beers);
+            })
+            .catch(error => {              
+                console.error('Error fetching search results:', error);
+            });
+    }
+}
 
+// Get the search input element and search form
+const searchInput = document.querySelector('.search-bar input');
+const searchForm = document.querySelector('.search-bar');
+
+// Add an event listener for the submit event of the search form
+searchForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    // Get the value of the search input
+    const searchQuery = searchInput.value;
+    // Call the function to search for beers by name
+    searchBeersByName(searchQuery);
+});
 
 
 /**

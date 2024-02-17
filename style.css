@@ -1,8 +1,5 @@
 body{
-    background-image: 
-        linear-gradient(
-            to top right, #e68282, #242424
-        );
+   
     min-height: 100svh;
     margin:0;
     display: flex;
@@ -12,6 +9,17 @@ body{
    
 }
 
+body {
+    background-image: 
+    linear-gradient(
+        to left, #966262, #242424
+    );
+}
+
+html{
+    height: auto;
+}
+ 
 *{
     box-sizing: border-box;
    
@@ -42,7 +50,7 @@ header h1{
 .slider{    
     position: absolute;
     top: 220px;
-    width: 100vw;  
+    width: 90vw;  
     height: 370px;
     overflow: hidden;  
     
@@ -56,8 +64,7 @@ header h1{
     padding: 10px;
     flex-direction: column;
     width: 200px;
-    height: 300px;
-    background-color: #fff;
+    height: 300px;   
     border-radius: 10px;
     border-style: groove;
     border-color: #242424;
@@ -130,8 +137,8 @@ header h1{
 }
 .search-bar input,
 .search-btn {
-	width: 3em;
-	height: 3em;
+	width: 4em;
+	height: 4em;
 }
 .search-bar input:invalid:not(:focus),
 .search-btn {
@@ -152,10 +159,19 @@ header h1{
 	justify-content: center;
 	max-width: 30em;
 }
+
+.search-bar input::placeholder {
+    color: transparent;
+}
+
+/* Placeholder color when input is focused */
+.search-bar input:focus::placeholder {
+    color: #888787; /* Adjust the color to your preference */
+}
 .search-bar input {
     font-family: "Poppins", sans-serif;
 	background: transparent;
-	border-radius: 1.5em;
+	border-radius: 2em;
 	box-shadow: 0 0 0 0.4em #888787 inset;
 	padding: 0.75em;
 	transform: translate(0.5em,0.5em) scale(0.5);
@@ -177,10 +193,11 @@ header h1{
 .search-btn {
 	background: #171717;
 	border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
-	padding: 0.75em;
+	padding: 0.5em;
 	position: relative;
 	transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
 	transform-origin: 0 50%;
+    width:70px;
 }
 .search-btn:before, 
 .search-btn:after {
@@ -194,8 +211,8 @@ header h1{
 	box-shadow: 0 0 0 0.2em #f1f1f1 inset;
 	top: 0.75em;
 	left: 0.75em;
-	width: 1.2em;
-	height: 1.2em;
+	width: 1.5em;
+	height: 1.5em;
 }
 .search-btn:after {
 	background: #f1f1f1;
@@ -204,8 +221,9 @@ header h1{
 	left: 51%;
 	width: 0.75em;
 	height: 0.25em;
-	transform: translate(0.2em,0) rotate(45deg);
-	transform-origin: 0 50%;
+	transform: translate(0.5em,0) rotate(45deg);
+	transform-origin: 0 50%;    
+   
 }
 .search-btn span {
 	display: inline-block;
@@ -399,7 +417,7 @@ header h1{
 	body {
         background-image: 
         linear-gradient(
-            to top, #966262, #242424
+            to left, #966262, #242424
         );
 	}
 	.search-bar input {
@@ -413,4 +431,32 @@ header h1{
 	.search-btn {
 		background: #f1f1f1;
 	}
+}
+
+
+.search-results{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 750px;
+    width:250px;
+    border-width: 3px;    
+  
+
+    margin-top: -5px; 
+    padding: 10px;  
+    gap:3px;
+ 
+}
+
+.result{
+    display: flex;
+    flex-direction: row;  
+    border-bottom: 2px solid #9c9c9c;
+    border-radius: 5px;
+    padding-left: 5px;
+    color: #ffffff;
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
+    box-shadow: rgba(121, 121, 121, 0.15) 0px 2px 8px;
 }
